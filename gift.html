@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Buy e-Gift Card</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== Scoped styles cho trang e-Gift Card ===== */
+    .gift-page { padding: 40px 0; background: #fff7f9; min-height: 100vh; }
+    .gift-wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .gift-how h2 { margin: 0 0 14px; }
+    .gift-how ol { padding-left: 20px; }
+    .gift-how li { margin-bottom: 10px; line-height: 1.6; }
+    .gift-how .note { margin-top: 16px; font-weight: 700; }
+    .gift-how ul { padding-left: 20px; }
+    .gift-form { background: #fff; border-radius: 16px; padding: 22px; box-shadow: 0 6px 22px rgba(0,0,0,.06); }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-weight: 600; margin-bottom: 6px; }
+    .field input, .field textarea, .field select {
+      width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; background: #fff4f7; font: inherit;
+    }
+    .actions { margin-top: 12px; }
+    .success-panel {
+      background: #fff; border: 1px solid #ffd3e3; border-radius: 16px; padding: 24px;
+      box-shadow: 0 6px 22px rgba(0,0,0,.06);
+    }
+    .success-panel h2 { margin-top: 0; }
+    @media (max-width: 900px){ .gift-wrap { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="gift-page">
+    <div class="gift-wrap">
+      <!-- Cột trái: How it works -->
+      <section class="gift-how">
+        <h2>How It Works</h2>
+        <ol>
+          <li><strong>Fill in the form</strong> – Choose the amount, add the recipient’s name, and write your personal message.</li>
+          <li><strong>Receive Invoice</strong> – We’ll send you an invoice for the selected amount within 24h.</li>
+          <li><strong>Get your E-Gift Card</strong> – After payment, you’ll receive a personalized digital card with a unique code.</li>
+          <li><strong>Share the Joy</strong> – Send it to your loved one; they can use the code as a <strong>coupon code</strong> when booking at Vietnamnails.</li>
+        </ol>
+
+        <p class="note">Note:</p>
+        <ul>
+          <li>Valid for 6 months from the purchase date.</li>
+          <li>Non-refundable; cannot be exchanged for cash.</li>
+          <li>Redeemable for services at Vietnamnails.</li>
+          <li>Lost codes can be re-issued to the buyer’s email on request.</li>
+          <li>For changes to recipient or send date, please contact us.</li>
+        </ul>
+      </section>
+
+      <!-- Cột phải: Form -->
+      <section id="giftFormSection" class="gift-form">
+        <form id="giftForm" novalidate>
+          <div class="row-2">
+            <div class="field">
+              <label>First Name <span style="color:#d33">*</span></label>
+              <input name="firstName" required />
+            </div>
+            <div class="field">
+              <label>Last Name <span style="color:#d33">*</span></label>
+              <input name="lastName" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Email <span style="color:#d33">*</span></label>
+            <input type="email" name="email" required />
+          </div>
+
+          <div class="field">
+            <label>Phone <span style="color:#d33">*</span></label>
+            <input name="phone" required placeholder="+358 ..." />
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label>Country</label>
+              <select name="country">
+                <option value="Finland" selected>Finland</option>
+                <option value="Vietnam">Vietnam</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Address Line 1 <span style="color:#d33">*</span></label>
+              <input name="addr1" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Address Line 2</label>
+            <input name="addr2" />
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label>Postal Code <span style="color:#d33">*</span></label>
+              <input name="postal" required />
+            </div>
+            <div class="field">
+              <label>City <span style="color:#d33">*</span></label>
+              <input name="city" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Recipient name <span style="color:#d33">*</span></label>
+            <input name="recipient" required />
+          </div>
+
+          <div class="field">
+            <label>Amount (€) <span style="color:#d33">*</span></label>
+            <input type="number" name="amount" required min="1" step="1" />
+          </div>
+
+          <div class="field">
+            <label>Personal message on the gift card</label>
+            <textarea name="message" rows="3" placeholder="Optional, max 100 chars"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Any special requests?</label>
+            <textarea name="requests" rows="3"></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn--primary squishy" type="submit">Send</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Đơn giản: validate HTML5 + hiện thông báo trên trang (không popup)
+    const form = document.getElementById('giftForm');
+    const section = document.getElementById('giftFormSection');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+
+      // Lấy dữ liệu (nếu cần gửi server, thêm fetch() tại đây)
+      const data = Object.fromEntries(new FormData(form).entries());
+      console.log('Gift form payload:', data);
+
+      // Hiển thị thông báo thành công ngay trên trang (thay form)
+      section.innerHTML = `
+        <div class="success-panel">
+          <h2>Thanks! Your e-Gift Card request has been sent.</h2>
+          <p>We will email you an invoice within 24 hours. After payment, your personalized e-Gift Card with a unique code will be delivered to your email.</p>
+          <p>If you need to change the recipient or send date, just reply to our email and we’ll help.</p>
+          <div class="actions">
+            <a class="btn btn--primary squishy" href="index.html">Back to home</a>
+          </div>
+        </div>`;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
