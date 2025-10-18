@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Book Appointment</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== Booking page scoped styles ===== */
+    #booking { background:#fde7ef1a; min-height:100vh; padding:40px 0; }
+    #booking .container { max-width: 1000px; }
+    .stepper { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px; font-weight:600; }
+    .stepper .dot{ width:28px; height:28px; border-radius:50%; display:inline-grid; place-items:center; border:2px solid #000; font-size:14px; }
+    .stepper .active .dot{ background:#000; color:#fff; }
+    .stepper .item{ display:flex; align-items:center; gap:8px; opacity:.5 }
+    .stepper .active{ opacity:1 }
+    .panel{ background:#fff; border-radius:16px; box-shadow:0 6px 22px rgba(0,0,0,.06); padding:20px; }
+    .grid{ display:grid; gap:14px; }
+    .grid.cols-1{ grid-template-columns:1fr; }
+    .grid.cols-2{ grid-template-columns:repeat(2,1fr); }
+    .grid.cols-3{ grid-template-columns:repeat(3,1fr); }
+    .row{ display:flex; justify-content:space-between; align-items:center; padding:16px; border:1px solid #eee; border-radius:12px; background:#fff; }
+    .row:hover{ border-color:#ddd; }
+    .row h4{ margin:0 0 4px; font-size:16px; }
+    .muted{ color:#666; font-size:14px; }
+    .btn.select { padding:10px 16px; font-weight:700; }
+    .btn--primary{ background:#ff9966; color:#fff; }
+    .actions{ display:flex; gap:12px; margin-top:18px; }
+    .hidden{ display:none !important; }
+
+    /* time slots */
+    .time-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+    .slot{ padding:12px; border:1px solid #ddd; border-radius:10px; text-align:center; cursor:pointer; }
+    .slot.selected{ outline:3px solid #000; }
+
+    /* staff list */
+    .staff{ display:grid; grid-template-columns:1fr; gap:12px; }
+    .staff .row img{ width:72px; height:72px; border-radius:10px; object-fit:cover; margin-right:12px; }
+
+    /* summary + form */
+    .summary{ background:#ffe6ef; border:1px solid #ffd3e3; }
+    .form { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .form .full{ grid-column:1 / -1; }
+    .field label{ display:block; font-weight:600; margin-bottom:6px; }
+    .field input, .field textarea{
+      width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font:inherit;
+    }
+
+    /* keep this page isolated from rest of site */
+    #booking .btn.squishy{ border-radius:999px; padding:10px 18px; }
+
+    /* ===== Modal styles (scoped cho booking page) ===== */
+    .bk-modal{ position:fixed; inset:0; display:none; place-items:center; z-index:1000; }
+    .bk-modal:not(.hidden){ display:grid; }
+    .bk-modal .bk-modal__backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
+    .bk-modal .bk-modal__dialog{
+  position:relative; background:#fff; width:min(560px, 92vw);
+  border-radius:16px; box-shadow:0 12px 40px rgba(0,0,0,.18); padding:20px;
+}
+
+  </style>
+</head>
+
+<body>
+  <main id="booking">
+    <div class="container">
+      <h1 style="margin-bottom:8px;">Select a service and time below.</h1>
+      <p class="muted" style="margin-bottom:22px;">
+        Can’t find a good time? WhatsApp us — we’ll help you find a spot!<br/>
+        Cash-free studio: card payments only.
+      </p>
+
+      <!-- Stepper -->
+      <div id="stepper" class="stepper"></div>
+
+      <!-- Panels -->
+      <section id="step-1" class="panel">
+        <h3>Select Category</h3>
+        <div id="cat-list" class="grid cols-1" style="margin-top:12px;"></div>
+      </section>
+
+      <section id="step-2" class="panel hidden">
+        <h3 id="svc-title">Choose a service</h3>
+        <div id="svc-list" class="grid cols-1" style="margin-top:12px;"></div>
+        <div class="actions"><button class="btn" id="back-2">Back</button></div>
+      </section>
+
+      <section id="step-3" class="panel hidden">
+        <h3>Pick a time</h3>
+        <div id="time-grid" class="time-grid" style="margin-top:12px;"></div>
+        <div class="actions"><button class="btn" id="back-3">Back</button></div>
+      </section>
+
+      <section id="step-4" class="panel hidden">
+        <h3>Select a staff member</h3>
+        <div id="staff-list" class="staff" style="margin-top:12px;"></div>
+        <div class="actions"><button class="btn" id="back-4">Back</button></div>
+      </section>
+
+      <section id="step-5" class="panel hidden">
+        <h3>Appointment summary</h3>
+        <div id="summary" class="panel summary" style="margin-top:12px;"></div>
+
+        <h3 style="margin-top:18px;">Your information</h3>
+        <form id="info-form" class="form" autocomplete="on">
+          <div class="field"><label>First name*</label><input required name="firstName" /></div>
+          <div class="field"><label>Last name*</label><input required name="lastName" /></div>
+          <div class="field"><label>Phone*</label><input required name="phone" placeholder="+358 ..." /></div>
+          <div class="field"><label>Email*</label><input required type="email" name="email" /></div>
+          <div class="field full"><label>Notes (optional)</label><textarea name="notes" rows="3"></textarea></div>
+        </form>
+
+        <div class="actions">
+          <button class="btn" id="back-5">Back</button>
+          <button class="btn btn--primary squishy" id="confirm">Confirm appointment</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ===== Modal confirm ===== -->
+  <div id="bk-modal" class="bk-modal hidden">
+    <div class="bk-modal__backdrop"></div>
+    <div class="bk-modal__dialog">
+      <h3 style="margin:0 0 10px;">Confirm your appointment</h3>
+      <div id="bk-modal-body" class="muted" style="margin-bottom:16px;"></div>
+      <div class="actions">
+        <button id="bk-modal-cancel" class="btn">Cancel</button>
+        <button id="bk-modal-submit" class="btn btn--primary squishy">Confirm booking</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="booking.js"></script>
+</body>
+</html>
