@@ -6,7 +6,7 @@
   <title>Book Appointment</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* ===== Booking page scoped styles ===== */
+
     #booking { background:#fde7ef1a; min-height:100vh; padding:40px 0; }
     #booking .container { max-width: 1000px; }
     .stepper { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px; font-weight:600; }
@@ -28,16 +28,13 @@
     .actions{ display:flex; gap:12px; margin-top:18px; }
     .hidden{ display:none !important; }
 
-    /* time slots */
     .time-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
     .slot{ padding:12px; border:1px solid #ddd; border-radius:10px; text-align:center; cursor:pointer; }
     .slot.selected{ outline:3px solid #000; }
 
-    /* staff list */
     .staff{ display:grid; grid-template-columns:1fr; gap:12px; }
     .staff .row img{ width:72px; height:72px; border-radius:10px; object-fit:cover; margin-right:12px; }
 
-    /* summary + form */
     .summary{ background:#ffe6ef; border:1px solid #ffd3e3; }
     .form { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
     .form .full{ grid-column:1 / -1; }
@@ -46,10 +43,8 @@
       width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font:inherit;
     }
 
-    /* keep this page isolated from rest of site */
     #booking .btn.squishy{ border-radius:999px; padding:10px 18px; }
 
-    /* ===== Modal styles (scoped cho booking page) ===== */
     .bk-modal{ position:fixed; inset:0; display:none; place-items:center; z-index:1000; }
     .bk-modal:not(.hidden){ display:grid; }
     .bk-modal .bk-modal__backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
@@ -118,7 +113,6 @@
     </div>
   </main>
 
-  <!-- ===== Modal confirm ===== -->
   <div id="bk-modal" class="bk-modal hidden">
     <div class="bk-modal__backdrop"></div>
     <div class="bk-modal__dialog">
