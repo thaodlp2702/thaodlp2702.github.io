@@ -1,4 +1,4 @@
-// ===== Simple in-page flow state =====
+
 const state = {
   category: null,   // {id, name}
   service:  null,   // {id, name, duration, price}
@@ -6,7 +6,7 @@ const state = {
   staff:    null,   // {id, name}
 };
 
-// ===== Sample data (bạn đổi theo thực tế) =====
+
 const DATA = {
   categories: [
     { id: "nail", name: "Nail care" },
@@ -42,7 +42,6 @@ const DATA = {
   ]
 };
 
-// ===== Utilities =====
 const qs  = s => document.querySelector(s);
 const qsa = s => [...document.querySelectorAll(s)];
 const show = id => qs(id).classList.remove('hidden');
@@ -58,7 +57,6 @@ function setStepActive(step){
 
 const DATA_STEPS = ["Category","Service","Time","Staff","Info"];
 
-// ===== Renderers =====
 function renderCategories(){
   setStepActive(0);
   const el = qs('#cat-list');
@@ -103,7 +101,7 @@ function renderServices(){
 }
 
 function generateTimeSlots(){
-  // ví dụ tạo slot trong 5 ngày tới, 08:00–18:00 mỗi 5 phút (demo rút gọn 10–minute)
+  
   const slots = [];
   const now = new Date();
   for(let d=0; d<5; d++){
@@ -121,7 +119,7 @@ function renderTimes(){
   setStepActive(2);
   const grid = qs('#time-grid');
   grid.innerHTML = '';
-  const slots = generateTimeSlots().slice(0,50); // demo: lấy 50 slot đầu
+  const slots = generateTimeSlots().slice(0,50); 
   slots.forEach(t=>{
     const label = t.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
     const btn = document.createElement('div');
@@ -131,7 +129,6 @@ function renderTimes(){
       qsa('.slot.selected').forEach(s=>s.classList.remove('selected'));
       btn.classList.add('selected');
       state.datetime = t.toISOString();
-      // chuyển ngay sang bước staff
       renderStaff();
     };
     grid.appendChild(btn);
@@ -177,7 +174,7 @@ function renderSummary(){
   qs('#summary').innerHTML = html;
 
   qs('#back-5').onclick = ()=>renderStaff();
- // helper nhỏ để show/hide modal
+ 
 function openModal(html){
   qs('#bk-modal-body').innerHTML = html;
   qs('#bk-modal').classList.remove('hidden');
@@ -188,11 +185,9 @@ function closeModal(){
   document.body.style.overflow = '';
 }
 
-// --- gán lại nút Confirm ở bước 5:
 qs('#confirm').onclick = (e)=>{
   e.preventDefault();
 
-  // Validate form (HTML5 required đã có; kiểm tra lại cho chắc)
   const formEl = document.getElementById('info-form');
   if(!formEl.reportValidity()){ return; }
 
@@ -206,7 +201,6 @@ qs('#confirm').onclick = (e)=>{
     selection: state
   };
 
-  // Render bảng xác nhận
   const when = new Date(state.datetime).toLocaleString([], {
     weekday:'long', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit'
   });
@@ -225,18 +219,13 @@ qs('#confirm').onclick = (e)=>{
   `;
   openModal(confirmHTML);
 
-  // Nút Cancel và bấm nền tối để đóng
   qs('#bk-modal-cancel').onclick = closeModal;
   qs('#bk-modal').querySelector('.bk-modal__backdrop').onclick = closeModal;
 
-  // Nút Confirm booking (ở trong popup)
   qs('#bk-modal-submit').onclick = ()=>{
-    // TODO: gửi dữ liệu lên server / Google Sheet / email… tại đây
-    // Ví dụ: fetch('/api/appointments', {method:'POST', body: JSON.stringify(payload)})
 
-    // Thông báo thành công + đóng modal
     closeModal();
-    // Optional: reset form/điều hướng cảm ơn
+
     formEl.reset();
     alert('Your appointment has been submitted! We will send a confirmation to your email.');
   };
@@ -244,13 +233,11 @@ qs('#confirm').onclick = (e)=>{
   hide('#step-1'); hide('#step-2'); hide('#step-3'); hide('#step-4'); show('#step-5');
 }
 
-// init
-// ===== SIMPLE AUTO-SELECT SERVICE FROM URL =====
 const params = new URLSearchParams(window.location.search);
 const serviceID = params.get("svc"); // lấy ?svc=...
 
 if (serviceID) {
-  // Tìm trong tất cả danh sách dịch vụ
+
   let foundService = null;
   let foundCategory = null;
 
@@ -266,19 +253,18 @@ if (serviceID) {
   }
 
   if (foundService) {
-    // Gán sẵn vào state
+
     state.category = { id: foundCategory, name: foundCategory };
     state.service = foundService;
 
-    // Đi thẳng đến bước chọn thời gian
     renderTimes();
   } else {
-    // Nếu không tìm thấy, quay về flow bình thường
+
     renderCategories();
   }
 
 } else {
-  // Nếu không có ?svc=..., chạy flow bình thường
+
   renderCategories();
 }
 
