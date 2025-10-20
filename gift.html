@@ -6,7 +6,7 @@
   <title>Buy e-Gift Card</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* ===== Scoped styles cho trang e-Gift Card ===== */
+ 
     .gift-page { padding: 40px 0; background: #fff7f9; min-height: 100vh; }
     .gift-wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
     .gift-how h2 { margin: 0 0 14px; }
@@ -33,7 +33,7 @@
 <body>
   <main class="gift-page">
     <div class="gift-wrap">
-      <!-- Cột trái: How it works -->
+     
       <section class="gift-how">
         <h2>How It Works</h2>
         <ol>
@@ -53,7 +53,6 @@
         </ul>
       </section>
 
-      <!-- Cột phải: Form -->
       <section id="giftFormSection" class="gift-form">
         <form id="giftForm" novalidate>
           <div class="row-2">
@@ -137,7 +136,7 @@
   </main>
 
   <script>
-    // Đơn giản: validate HTML5 + hiện thông báo trên trang (không popup)
+    
     const form = document.getElementById('giftForm');
     const section = document.getElementById('giftFormSection');
 
@@ -145,11 +144,9 @@
       e.preventDefault();
       if (!form.reportValidity()) return;
 
-      // Lấy dữ liệu (nếu cần gửi server, thêm fetch() tại đây)
       const data = Object.fromEntries(new FormData(form).entries());
       console.log('Gift form payload:', data);
 
-      // Hiển thị thông báo thành công ngay trên trang (thay form)
       section.innerHTML = `
         <div class="success-panel">
           <h2>Thanks! Your e-Gift Card request has been sent.</h2>
