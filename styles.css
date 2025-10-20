@@ -19,7 +19,6 @@ body{
 
 .container{width:min(1200px,92%);margin-inline:auto}
 
-/* ===== Header ===== */
 .site-header{
   position:sticky; top:0; z-index:50;
   background:rgba(255,241,242,.9);
@@ -29,9 +28,9 @@ body{
 .nav{display:flex;align-items:center;gap:24px;padding:14px 0}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
 .brand__logo {
-  height: 90px;       /* bằng chiều cao menu */
-  width: auto;        /* giữ tỉ lệ gốc */
-  max-height: 100%;   /* không vượt khung menu */
+  height: 90px;       
+  width: auto;        
+  max-height: 100%;   
   object-fit: contain;
 }
 
@@ -55,23 +54,21 @@ body{
 .hamburger{display:none;margin-left:8px;background:none;border:0;padding:6px}
 .hamburger span{display:block;height:2px;width:22px;background:#333;margin:5px 0;border-radius:2px}
 
-/* ===== Hero ===== */
-/* Hero gọn lại */
-.hero{ padding: 32px 0 0; }               /* ↓ từ 56px */
+.hero{ padding: 32px 0 0; }               
 .hero__grid{
   display: grid;
-  grid-template-columns: 1.05fr .95fr;    /* cân lại tỉ lệ một chút */
-  gap: 20px;                               /* ↓ từ 28px */
+  grid-template-columns: 1.05fr .95fr;    
+  gap: 20px;                             
   align-items: center;
 }
 .hero h1{ font-family:"Playfair Display",serif; color:var(--text); font-size:40px; line-height:1.1; margin:0 0 8px; } /* ↓ từ 48px */
-.hero .sub{ margin: 0 0 12px; }            /* đoạn mô tả ngắn hơn chút */
+.hero .sub{ margin: 0 0 12px; }           
 .hero__photo{
   aspect-ratio: 4/5;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 8px 40px rgba(0,0,0,.08);
-  max-height: 520px;                       /* giới hạn chiều cao ảnh hero */
+  max-height: 520px;                       
 }
 
 .eyebrow{letter-spacing:.2em;text-transform:uppercase;color:#ff7043;font-weight:700;margin:0 0 6px}
@@ -82,7 +79,6 @@ body{
 
 .hero__cta{display:flex;gap:12px;margin:8px 0 14px}
 
-/* Badges with “squishy” hover */
 .badges{display:flex;gap:10px;flex-wrap:wrap}
 .badge{
   background:var(--soft);color:#8b2b47;
@@ -90,16 +86,13 @@ body{
   display:inline-flex;align-items:center;
 }
 
-/* squishy hover like Book button */
 .squishy{transition:transform .08s ease}
 .squishy:hover{transform:scale(1.05)}
 .squishy:active{transform:scale(.98)}
 
-/* ===== Scrolling strip ===== */
-/* Khung hồng cao hơn + ảnh to hơn */
 .scroller{
   margin-top: 22px;
-  padding-block: 18px;          /* thêm padding trên/dưới để khung hồng dày hơn */
+  padding-block: 18px;        
   border-top: 1px dashed #ffd1c6;
   border-bottom: 1px dashed #ffd1c6;
   background: #ffe9e3;
@@ -107,14 +100,14 @@ body{
 
 .scroller__track{
   display: flex;
-  gap: 18px;                    /* khoảng cách giữa ảnh hơi rộng hơn */
+  gap: 18px;                  
   align-items: center;
-  padding: 14px 12px;           /* dày hơn một chút */
+  padding: 14px 12px;         
   animation: marquee 24s linear infinite;
 }
 
 .scroller__track img{
-  height: 140px;                /* ↑ từ 80px lên 140px */
+  height: 140px;            
   width: auto;
   border-radius: 12px;
   flex: 0 0 auto;
@@ -124,12 +117,11 @@ body{
 }
 .scroller__track img:hover{ transform: scale(1.04); }
 
-/* Responsive để vừa màn hình nhỏ */
 @media (max-width: 1024px){
   .scroller__track img{ height: 110px; }
 }
 @media (max-width: 760px){
-  .scroller__track img{ height: 90px; }   /* trước đây là 66px */
+  .scroller__track img{ height: 90px; }   
 }
 
 @keyframes marquee{
@@ -137,7 +129,6 @@ body{
   100%{transform:translateX(-50%)}
 }
 
-/* ===== Sections ===== */
 .section{padding:64px 0}
 .section--alt{background:none !important;}
 .section__title{
@@ -145,7 +136,6 @@ body{
   color:var(--text);font-size:34px;margin:0 0 22px;text-align:left
 }
 
-/* Round cards grid (services/lashes) */
 .round-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
 .round-card{
   background:#fff;border-radius:16px;padding:18px;text-align:center;
@@ -161,7 +151,6 @@ body{
 .link{color:var(--primary);text-decoration:none;font-weight:700}
 .link:hover{text-decoration:underline}
 
-/* Team */
 .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .team-card{
   background:#fff;border-radius:16px;padding:18px;text-align:center;border:1px solid #ffe1d6
@@ -170,10 +159,9 @@ body{
 .team-card h3{margin:10px 0 2px;color:var(--text);font-weight:700}
 .team-card p{margin:0}
 
-/* Gift */
 .section--gift{background:radial-gradient(1200px 400px at 15% 20%, #ffe1d6, #fff1f2 60%, #fff0)}
 .gift{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
-/* ===== Gift Card section ===== */
+
 .gift {
   display: flex;
   align-items: center;
@@ -194,19 +182,17 @@ body{
 
 .gift__cards img {
   width: 100%;
-  max-width: 500px;      /* 👈 tăng kích thước tối đa của ảnh */
+  max-width: 500px;     
   height: auto;
-  border-radius: 12px;   /* bo nhẹ cho mềm mại */
+  border-radius: 12px;  
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   transition: transform 0.3s ease;
 }
 
 .gift__cards img:hover {
-  transform: scale(1.03); /* phóng nhẹ khi hover */
+  transform: scale(1.03); 
 }
 
-
-/* Prices */
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .price-card{
   background:#fff;border:1px solid #ffe1d6;border-radius:16px;padding:20px;text-align:center;
@@ -214,20 +200,17 @@ body{
 }
 .price-card .price{font-size:28px;font-weight:800;color:#ff5c3a;margin:6px 0}
 
-/* Testimonials */
 .testimonials{display:grid;place-items:center;text-align:center}
 .quote{font-family:"Playfair Display",serif;color:#5e2c2c;font-size:22px;max-width:40ch}
 .dots{display:flex;gap:8px;margin-top:10px}
 .dot{width:8px;height:8px;border-radius:50%;background:#ffc7b6;opacity:.6}
 .dot.is-active{opacity:1;background:var(--primary)}
 
-/* Footer */
 .footer{background:#ffefe9;margin-top:30px;border-top:1px solid #ffd7cc}
 .footer__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:28px 0}
 .footer h4{margin:0 0 8px;color:var(--text)}
 .footer__bar{text-align:center;padding:10px 0;border-top:1px solid #ffd7cc;font-size:14px}
 
-/* ===== Responsive ===== */
 @media (max-width: 1024px){
   .hero__grid{grid-template-columns:1fr}
   .hero__right{order:-1}
@@ -247,7 +230,6 @@ body{
 }
 .menu.is-open{display:block}
 
-/* ===== Services grid: 4 cột ngang như cũ ===== */
 .svc {
   max-width: 1200px;
   margin: 32px auto;
@@ -257,74 +239,67 @@ body{
   gap: 24px;
 }
 
-/* Card dịch vụ */
 .svc-card {
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 6px 22px rgba(0,0,0,.06);
   padding: 18px 18px 16px;
-  display: flex;              /* để ghim nút ở đáy */
+  display: flex;             
   flex-direction: column;
 }
 
 .svc__actions {
-  margin-top: auto;           /* GIỮ NGUYÊN: đẩy xuống đáy của .svc__body */
+  margin-top: auto;          
 }
-/* Ảnh tròn ở giữa */
 .svc__media {
   width: 160px; height: 160px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 6px auto 12px;      /* CĂN GIỮA ảnh */
+  margin: 6px auto 12px;    
 }
 .svc__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* Nội dung chữ bên trái */
+
 .svc__body {
-  text-align: left;           /* CHỮ TRÁI */
+  text-align: left;         
   color: #444;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  min-height: 110px;          /* độ cao tối thiểu để card đều nhau */
+  min-height: 110px;       
   flex: 1; 
 }
 
-/* Tiêu đề (nếu muốn vẫn đậm nhưng không căn giữa) */
+
 .svc__title { margin: 0; font-weight: 700; font-size: 18px; color: #222; }
 
-/* Nút Book now luôn ở DƯỚI CÙNG – BÊN TRÁI */
 .svc__actions {
-  margin-top: auto;           /* đẩy actions xuống đáy card */
+  margin-top: auto;        
 }
 .svc__actions .btn-book {
   display: inline-block;
   color: #ff5722;
   font-weight: 700;
   text-decoration: none;
-  padding: 0;                 /* như text-link, đúng style hình mẫu */
+  padding: 0;              
 }
 .svc__actions .btn-book:hover { text-decoration: underline; }
 
-/* CHỈ áp dụng cho khu vực Prices */
 #prices .price-card{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;   /* giữ nội dung ở trên */
-  min-height: 260px;             /* tuỳ bạn, miễn đồng đều chiều cao */
+  justify-content: flex-start;   
+  min-height: 260px;          
   text-align: center;
 }
 
 #prices .price__actions{
-  margin-top: auto;              /* đẩy nút xuống đáy card */
+  margin-top: auto;          
   display: flex;
-  justify-content: center;       /* căn giữa ngang */
+  justify-content: center;     
   padding-top: 12px;
 }
 
-/* (an toàn) KHÔNG đụng vào .btn chung, không ghi đè .svc__actions */
-
-/* ===== Gift form modal ===== */
 .gift-modal {
   position: fixed;
   inset: 0;
@@ -380,40 +355,33 @@ body{
   cursor: pointer;
   line-height: 1;
 }
-/* ===== Customer Reviews ===== */
-/* ===== Customer Reviews Section (centered single slide) ===== */
-/* ===== Customer Reviews — full viewport width ===== */
-/* ===== Customer Reviews (FULL WIDTH, no side gaps) ===== */
+
 #reviews {
   background: #ffeef4;
-  overflow: hidden;                    /* tránh tràn ngang khi translate track */
+  overflow: hidden;            
 }
 
 #reviews .section__title {
-  text-align: center;                  /* tiêu đề chính giữa */
+  text-align: center;              
   margin-bottom: 14px;
 }
 
-/* Viewport của slider chiếm toàn bộ chiều ngang màn hình */
+
 .reviews__slider {
   position: relative;
-  width: 100vw;                        /* full màn hình */
-  margin-left: calc(50% - 50vw);       /* break out khỏi container */
+  width: 100vw;                  
+  margin-left: calc(50% - 50vw);   
   overflow: hidden;
-  /* KHÔNG padding-inline ở đây để khỏi tạo lề 2 bên */
 }
 
-/* Dải trượt */
 .reviews__track {
   display: flex;
   transition: transform 0.5s ease;
   width: 100%;
   margin: 0;
   padding: 0;
-  gap: 0;                               /* không khoảng cách giữa các slide */
+  gap: 0;                    
 }
-
-/* Mỗi lần chỉ 1 slide chiếm 100% viewport */
 .review {
   flex: 0 0 100vw;
   margin: 0;
@@ -423,7 +391,7 @@ body{
   text-align: center;
   box-shadow: 0 6px 22px rgba(0,0,0,0.06);
   display: grid;
-  place-items: center;                  /* căn nội dung vào giữa */
+  place-items: center;               
 }
 
 .review__stars {
@@ -453,7 +421,6 @@ body{
   border: 1px solid #ccc;
 }
 
-/* Arrows: nằm ngay mép bên trong viewport, không tạo lề */
 .reviews__nav {
   position: absolute;
   top: 50%;
@@ -474,7 +441,6 @@ body{
 .reviews__nav.prev { left: 16px; }
 .reviews__nav.next { right: 16px; }
 
-/* Dots */
 .reviews__dots {
   display: flex;
   justify-content: center;
@@ -491,35 +457,30 @@ body{
 }
 .reviews__dots button.active { background: #ff7a59; }
 
-/* Mobile tweak */
 @media (max-width: 480px){
   .review { padding: 22px 16px; }
   .review__text { max-width: 90vw; }
 }
 
-/* Tránh xuất hiện thanh cuộn ngang do 100vw */
 html, body { overflow-x: hidden; }
 
-/* ===== Footer Section: Orange with Curved Top ===== */
 .footer {
-  background: #ff5a2f;       /* màu cam */
+  background: #ff5a2f; 
   color: #fff;
   position: relative;
   padding: 60px 0 40px;
   text-align: left;
 }
 
-/* Nội dung bên trong (giữ nguyên grid của bạn) */
 .footer .footer__grid {
   position: relative;
-  z-index: 2;                /* nằm trên vòm */
+  z-index: 2;         
 }
 .footer h4, .footer p, .footer a { color:#fff; }
 
-/* Grid bên trong */
 .footer__grid {
   position: relative;
-  z-index: 2; /* đặt trên vòng cong */
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -532,20 +493,17 @@ html, body { overflow-x: hidden; }
   min-width: 220px;
 }
 
-/* Tiêu đề */
 .footer h4 {
   color: #fff;
   font-size: 18px;
   margin-bottom: 10px;
 }
 
-/* Văn bản */
 .footer p {
   margin: 6px 0;
   color: #fff;
 }
 
-/* Liên kết (nếu có trong p) */
 .footer a {
   color: #fff;
   text-decoration: none;
@@ -554,7 +512,6 @@ html, body { overflow-x: hidden; }
   text-decoration: underline;
 }
 
-/* Căn chỉnh responsive */
 @media (max-width: 768px) {
   .footer__grid {
     flex-direction: column;
@@ -565,7 +522,6 @@ html, body { overflow-x: hidden; }
   }
 }
 
-/* ===== Compact Spacing: Remove top/bottom gaps ===== */
 .section { padding-block: 24px !important; }
 .section + .section { margin-top: 0 !important; }
 .section__title { margin: 0 0 16px !important; }
@@ -575,17 +531,12 @@ html, body { overflow-x: hidden; }
 .svc__body p:last-child, .price-card p:last-child { margin-bottom: 0 !important; }
 .section > .container > *:last-child { margin-bottom: 0 !important; }
 
-/* ===== Footer Cleanup: Only orange background, no pink ===== */
 body { background:#fff !important; }
 .section--alt, #reviews { background:none !important; }
 .footer { margin-top:0 !important; border:none !important; background:#ff5a2f !important; color:#fff; }
 
-/* === Alternating blocks === */
-
-/* Mặc định: khối nền hồng nhạt */
 .section{ background:#FFF1F2; }
 
-/* Khối cam */
 .section--orange{
   background:#ff5a2f;
   color:#fff;
@@ -593,13 +544,10 @@ body { background:#fff !important; }
 .section--orange a{ color:#fff; }
 .section--orange .section__title{ color:#fff; }
 
-/* (tuỳ chọn) Khối trắng nếu cần xen trắng */
 .section--white{ background:#ffffff; }
 
-/* Footer giữ cam */
 .footer{ background:#ff5a2f !important; color:#fff; }
 
-/* ===== Fix: show role text inside white team cards on orange section ===== */
 .section--orange .team-card h3 { 
   color: #222 !important;
 }
@@ -608,13 +556,12 @@ body { background:#fff !important; }
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  color: #444 !important;    /* chữ đậm trên nền trắng của card */
+  color: #444 !important;  
   margin: 0 !important;
   line-height: 1.4 !important;
   font-size: 15px !important;
 }
 
-/* (tuỳ chọn) nếu muốn toàn bộ card tối màu hơn cho cân đối */
 .section--orange .team-card {
   color: #444 !important;
 }
